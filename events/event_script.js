@@ -45,15 +45,7 @@ const orange = action.children[2];
    dispWrapp.appendChild(newsquareorange);
  };
 
-//// creating new log
 
- const newLog = () => {
-   const liAct = document.createElement("li");
-
-   liAct.textContent = "created a new square";
-
-   logAct.appendChild(liAct);
- };
 
 
  // add eventlistener
@@ -72,6 +64,8 @@ const orange = action.children[2];
 //   neworange();
 //   newLog();
 // });
+
+
 const _initTime = Date.now()
 
 const getElapsedTime = () => {
@@ -83,15 +77,15 @@ const getElapsedTime = () => {
 //     console.log(getElapsedTime())
 //   }
 
+//// creating new log
 
-const newSquare = () => {
-    const newsquare = document.createElement("div");
-    newsquare.classList.add("displayedsquare");
-
+const newLog = () => {
+    const liAct = document.createElement("li");
     
- 
-    dispWrapp.appendChild(newsquare);
-}
+    liAct.textContent = "created a new square";
+    logAct.appendChild(liAct);
+  }
+
 
 
 
@@ -99,14 +93,40 @@ const newColSquare = () => {
     const actions = document.querySelectorAll(".actionsquare");
 
     actions.forEach((action) => {
-        if (action.classList[1]){
+        if (action.classList[1]=== "green"){
             action.addEventListener("click", () => {
-                console.log(action.classList[1])
-                
+                newlime();
+                newLog();
             });
+        } else if (action.classList[1]=== "violet"){
+            action.addEventListener("click", () =>{
+                newviolet();
+                newLog();
+            });
+        } else if (action.classlist[1]=== "orange"){
+            action.addEventListener("click", () =>{
+                neworange();
+                newLog();
+            })
         }
     });
 }
 
 
-    newColSquare()
+newColSquare();
+
+//// SPACEBAR
+
+function spaceBar() {
+    let e = new Event('keyup');
+    e.which = e.keyCode = 32;
+    e.code = "Backspace";
+    e.key = " ";
+    document.addEventListener("keyup", (e) => {
+        newLog();
+    });
+}
+
+
+
+spaceBar();
