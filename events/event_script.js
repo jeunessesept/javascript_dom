@@ -88,11 +88,14 @@ const logSpace = () => {
 /// creating new squares
 
   const newSquare = (color) => {
-    const newsquarelime = document.createElement("div");
-    newsquarelime.classList.add("displayedsquare");
-    newsquarelime.classList.add(color);
+    const newsquare = document.createElement("div");
+    newsquare.classList.add("displayedsquare");
+    newsquare.classList.add(color);
+    newsquare.addEventListener("click" , (e) => {
+        alert(e.target.classList[1])
+    })
  
-    dispWrapp.appendChild(newsquarelime);
+    dispWrapp.appendChild(newsquare);
   }
 
 
@@ -110,18 +113,32 @@ const newColSquare = () => {
 
 newColSquare();
 
-//// SPACEBARe
+//// SPACEBAR
 
-function spaceBar() {
+const random_rgb = () => {
+    let r = Math.floor(Math.random()* 255);
+    let g = Math.floor(Math.random()* 255);
+    let b = Math.floor(Math.random()* 255);
+    return 'rgb(' + r + ', ' + g + ', ' + b + ')';
+    
+}
+
+const spaceBar = () => {
     let e = new Event('keyup');
     e.which = e.keyCode = 32;
     e.code = "Backspace";
     e.key = " ";
     document.addEventListener("keyup", (e) => {
         logSpace();
+        document.body.style.background = random_rgb();
+        
+
     });
 }
-
-
-
 spaceBar();
+
+
+
+
+
+
