@@ -19,31 +19,25 @@ const orange = action.children[2];
 // }
 
 // colorChoice()
-/// creating new squares
 
- const newlime = () => {
-   const newsquarelime = document.createElement("div");
-   newsquarelime.classList.add("displayedsquare");
-   newsquarelime.style.background = "#00ff00";
 
-   dispWrapp.appendChild(newsquarelime);
- };
 
- const newviolet = () => {
-   const newsquareviolet = document.createElement("div");
-   newsquareviolet.classList.add("displayedsquare");
-   newsquareviolet.style.background = "#ff00ff";
 
-   dispWrapp.appendChild(newsquareviolet);
- };
+//  const newviolet = () => {
+//    const newsquareviolet = document.createElement("div");
+//    newsquareviolet.classList.add("displayedsquare");
+//    newsquareviolet.style.background = "#ff00ff";
 
- const neworange = () => {
-   const newsquareorange = document.createElement("div");
-   newsquareorange.classList.add("displayedsquare");
-   newsquareorange.style.background = "#ffa500";
+//    dispWrapp.appendChild(newsquareviolet);
+//  };
 
-   dispWrapp.appendChild(newsquareorange);
- };
+//  const neworange = () => {
+//    const newsquareorange = document.createElement("div");
+//    newsquareorange.classList.add("displayedsquare");
+//    newsquareorange.style.background = "#ffa500";
+
+//    dispWrapp.appendChild(newsquareorange);
+//  };
 
 
 
@@ -79,43 +73,44 @@ const getElapsedTime = () => {
 
 //// creating new log
 
-const newLog = () => {
+const newLog = (color) => {
     const liAct = document.createElement("li");
-    
-    liAct.textContent = "created a new square";
+    liAct.textContent = ("created a new " + color +" square")
     logAct.appendChild(liAct);
   }
 
+const logSpace = () => {
+    const liAct = document.createElement("li");
+    liAct.textContent = "Space is the place";
+    logAct.appendChild(liAct);
+}
+
+/// creating new squares
+
+  const newSquare = (color) => {
+    const newsquarelime = document.createElement("div");
+    newsquarelime.classList.add("displayedsquare");
+    newsquarelime.classList.add(color);
+ 
+    dispWrapp.appendChild(newsquarelime);
+  }
 
 
 
 const newColSquare = () => {
     const actions = document.querySelectorAll(".actionsquare");
-
     actions.forEach((action) => {
-        if (action.classList[1]=== "green"){
-            action.addEventListener("click", () => {
-                newlime();
-                newLog();
-            });
-        } else if (action.classList[1]=== "violet"){
-            action.addEventListener("click", () =>{
-                newviolet();
-                newLog();
-            });
-        } else if (action.classlist[1]=== "orange"){
-            action.addEventListener("click", () =>{
-                neworange();
-                newLog();
-            })
-        }
+            action.addEventListener("click", (e) => {
+                newSquare(e.target.classList[1]);
+                newLog(e.target.classList[1]);
+            });   
     });
 }
 
 
 newColSquare();
 
-//// SPACEBAR
+//// SPACEBARe
 
 function spaceBar() {
     let e = new Event('keyup');
@@ -123,7 +118,7 @@ function spaceBar() {
     e.code = "Backspace";
     e.key = " ";
     document.addEventListener("keyup", (e) => {
-        newLog();
+        logSpace();
     });
 }
 
