@@ -125,12 +125,13 @@ const random_rgb = () => {
 
 const spaceBar = () => {
     let e = new Event('keyup');
-    e.which = e.keyCode = 32;
-    e.code = "Backspace";
-    e.key = " ";
     document.addEventListener("keyup", (e) => {
+      if (e.key == " " ||
+      e.code == "Space" ||      
+      e.keycode == 32  ) {
         logSpace();
         document.body.style.background = random_rgb();
+      }
         
 
     });
